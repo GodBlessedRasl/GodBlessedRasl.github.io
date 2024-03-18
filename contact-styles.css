@@ -1,0 +1,189 @@
+/* Стили, применяемые только к странице contact.html */
+
+header {
+    background-color: #343a40; /* Темно-серый фон */
+    color: white; /* Белый цвет текста для контраста */
+    padding: 10px 0; /* Отступы сверху и снизу */
+    text-align: center; /* Центрирование текста */
+}
+
+/* Стилизация навигации */
+nav {
+    background-color: #343a40; /* Темно-серый фон */
+    padding: 0; /* Убираем внутренние отступы */
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; /* использование flexbox для построения навигационного меню */
+    justify-content: center; /* Горизонтально центрировать ссылки */
+    align-items: center; /* Вертикально центрировать содержимое */
+    gap: 15px; /* Отступы между вкладками */
+}
+
+nav li {
+    margin: 0; /* Убираем внешние отступы */
+}
+
+nav a {
+    text-decoration: none;
+    color: white; /* Белый цвет текста для контраста */
+    padding: 5px 10px; /* Отступы для ссылок */
+}
+
+/* Стили для формы контакта */
+#contact-form {
+    max-width: 800px;
+    margin: 20px auto; /* Авто-марджин для центрирования */
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center; /* Центрирование по горизонтали */
+    gap: 10px; /* Расстояние между кнопками */
+    margin-top: 20px; /* Отступ сверху */
+}
+
+.theme-group {
+    display: flex;
+    justify-content: center; /* Центрирование по горизонтали */
+    gap: 10px; /* Расстояние между кнопками */
+    margin-top: 20px; /* Отступ сверху */
+}
+
+.priority-group {
+    display: flex;
+    justify-content: center; /* Центрирование по горизонтали */
+    gap: 10px; /* Расстояние между кнопками */
+    margin-top: 20px; /* Отступ сверху */
+}
+
+.birthdate-group {
+    display: flex;
+    justify-content: center; /* Центрирование по горизонтали */
+    gap: 10px; /* Расстояние между кнопками */
+    margin-top: 20px; /* Отступ сверху */
+}
+
+.file-group {
+    display: flex;
+    justify-content: center; /* Центрирование по горизонтали */
+    gap: 10px; /* Расстояние между кнопками */
+    margin-top: 20px; /* Отступ сверху */
+}
+
+.age-group {
+    display: flex;
+    justify-content: center; /* Центрирование по горизонтали */
+    gap: 10px; /* Расстояние между кнопками */
+    margin-top: 20px; /* Отступ сверху */
+}
+
+.message-group {
+    display: flex;
+    justify-content: center; /* Центрирование по горизонтали */
+    gap: 10px; /* Расстояние между кнопками */
+    margin-top: 20px; /* Отступ сверху */
+}
+
+
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="submit"],
+input[type="button"],
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover,
+input[type="button"]:hover,
+button:hover {
+    background-color: #0056b3;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer {
+    text-align: center;
+    padding: 1em 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+#chat-container {
+    background-color: white;
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+/* Стили для элементов формы и чата из contact.html */
+input[type=text], input[type=email], input[type=tel], textarea, select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit], input[type=reset], button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover, input[type=reset]:hover, button:hover {
+    background-color: #0056b3;
+}
+
+.contact, #chat-container {
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-color: white;
+    color: #212529;
+}
+
+header, nav, footer, #chat-container {
+    background-color: #343a40; /* Темно-серый фон */
+    padding: 1em 0;
+    color: white; /* Белый цвет текста для контраста */
+}
