@@ -4,6 +4,23 @@
   <meta charset="UTF-8">
   <title>Обратная связь - ВШЭ студент</title>
   <link rel="stylesheet" href="style.css">
+  <script>
+    document.addEventListener("DOMContentLoaded", function(){
+      var form = document.querySelector("form");
+      form.addEventListener("submit", function(event){
+        var valid = form.checkValidity();
+        if (valid) {
+          alert("Форма успешно отправлена");
+          // Действие по отправке формы (например, сохранить данные формы)
+          // ...
+          event.preventDefault(); // Удалить эту строку, чтобы форма реально отправлялась
+        } else {
+          // Выделение некорректно заполненных полей будет выполнено браузером
+          event.preventDefault();
+        }
+      });
+    });
+  </script>
 </head>
 <body>
   <header>
@@ -67,6 +84,7 @@
         </div>
         <div>
           <input type="submit" value="Отправить">
+          <input type="reset" value="Сбросить">
         </div>
       </form>
     </section>
