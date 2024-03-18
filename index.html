@@ -1,39 +1,82 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Я - студент ВШЭ</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Я - Студент ВШЭ</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
-<body>
-  <header id="header"> 
-    <h1>Добро пожаловать в жизнь студента ВШЭ!</h1>
-    <nav>
-      <ul class="nav-list"> 
-        <li><a href="index.html">Главная</a></li>
-        <li><a href="contact.html">Обратная связь</a></li>
-      </ul>
-    </nav>
-  </header>
+<body class="index-page">
 
-  <main class="main-content" style="background-color: #fff;"> 
-    <section>
-      <h2>О Кампусе</h2>
-      <img src="campus.jpg" alt="Кампус ВШЭ" width="600" height="400">
-      <p>Высшая школа экономики предлагает студентам не только качественное образование, но и развитую инфраструктуру кампуса.</p>
-    </section>
+<header>
+    <h1>Я - студент ВШЭ</h1>
+    <div class="container">
+        <nav>
+            <ul class="nav-list">
+                <li><a href="index.html#home">Главная и Обо мне</a></li>
+                <li><a href="contact.html#contact">Контакты</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 
-    <section>
-      <h2>Студенческая жизнь</h2>
-      <article>
-        <h3>Студенческие организации</h3>
-        <p>В ВШЭ действует большое количество студенческих организаций, где каждый может найти занятие по душе.</p>
-      </article>
-    </section>
-  </main>
 
-  <footer style="text-align: center; padding: 20px;"> 
+<main>
+    <div class="container">
+
+        <section id="home-about" class="centered-section">
+            <div class="full-width-text">
+                <h2>Главная страница и информация обо мне</h2>
+            </div>
+            <div class="full-width-text">
+                <p>Вы находитесь на основной странице сайта, тут можно найти основную информацию обо мне.</p>
+            </div>
+            <div class="full-width-text">
+                <p>Я являюсь студентом Высшей Школы Экономики, факультета Прикладная Математика.</p>
+            </div>
+            <div class="full-width-text">
+                <p><a class="link" href="Resume.pdf" target="_blank">Тут</a> можно ознакомиться с моей деятельностью за последние несколько лет.</p>
+            </div>
+        </section>
+
+    </div>
+
+    <div class="container">
+        <section id="my-photo-section" class="centered-section">
+            <img id="my-photo" src="student.jpg" alt="Моя фотография">
+            <p class="photo-caption">Это я - студент факультета Прикладная Математика ВШЭ</p>
+        </section>
+    </div>
+
+    <div class="container">
+        <section id="my-location" class="centered-section">
+            <h3>Моё местоположение</h3>
+            <div id="map"></div>
+        </section>
+    </div>
+</main>
+
+<footer>
     <p>&copy; 2024 Студент ВШЭ. Все права защищены.</p>
-  </footer>
+</footer>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="scripts.js"></script>
+<script>
+    // Создание карты
+    var map = L.map('map').setView([55.7558, 37.6173], 10);
+
+    // Добавление слоя OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Добавление маркера
+    L.marker([55.7558, 37.6173]).addTo(map)
+        .bindPopup('Москва, Россия')
+        .openPopup();
+</script>
+
 </body>
 </html>
