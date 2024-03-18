@@ -1,78 +1,89 @@
-
-h1 {
-  font-family: 'Arial', sans-serif;
-  color: #333;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Селектор идентификатора */
-#header {
-  background: #eee;
-  padding: 20px 0;
-  text-align: center;
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    color: #212529;
 }
 
-/* Селектор класса */
-.nav-list {
-  list-style: none;
-  display: flex;
-  justify-content: center;
+header, nav, .centered-section, footer, #contact, #chat {
+    background-color: #343a40; /* Темно-серый фон */
+    padding: 1em 0;
+    color: white; /* Белый цвет текста для контраста */
 }
 
-.nav-list li {
-  padding: 0 15px;
+h1, h2 {
+    text-align: center;
+    color: white; /* Белый цвет заголовка для контраста */
+    margin-bottom: 0.5em;
 }
 
-/* Селектор атрибута */
-input[type="submit"], input[type="reset"] {
-  background-color: #555;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  margin: 10px 0;
-}
-
-/* Селектор псевдо-класса */
-input[type="text"]:focus {
-  border-color: blue;
-}
-
-/* Селектор псевдо-элемента */
-nav::after {
-  content: '';
-  display: block;
-  height: 1px;
-  background: black;
-  margin-top: 10px;
-}
-
-/* Комбинированный селектор */
-section h2 {
-  margin: 0;
-  padding: 10px 0;
-  background: lightgray;
-}
-
-/* Селектор по родительскому элементу */
-form > div {
-  margin-bottom: 10px;
-}
-
-/* Применение inline стиля */
-/* Добавлено непосредственно в HTML элементы в примере ниже */
-
-/* Использование !important */
-.main-content {
-  padding: 50px !important; /* Это свойство переопределит другие свойства padding, даже если они указаны позже */
-}
-
-/* Adapting layout with media query */
-@media (max-width: 768px) {
-  .nav-list {
+.container, .nav-list {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
-  }
-
-  /* Применение стилей для маленьких экранов или когда окно браузера сужено */
-  .main-content {
     padding: 20px;
-  }
 }
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    padding: 0;
+}
+
+.nav-list li a {
+    text-decoration: none;
+    color: #007bff;
+    padding: 5px 10px;
+}
+
+.nav-list li a:hover {
+    background-color: #d9d9d9;
+}
+
+.centered-section, #contact, #chat {
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-color: white;
+    color: #212529;
+}
+
+.full-width-text {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    color: #adb5bd; /* Светло-серый цвет текста для читаемости */
+}
+
+.full-width-text:last-child {
+    margin-bottom: 0;
+}
+
+#map {
+    width: 100%;
+    height: 400px;
+}
+
+footer {
+    text-align: center;
+    padding: 1em 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+
+
