@@ -2,73 +2,93 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background: #f4f4f4;
+    background-color: #f4f4f4; /* Фон страницы */
 }
 
-header, nav, section, footer {
-    margin: 10px;
-    padding: 15px;
+header {
+    background-color: #4CAF50; /* Цвет фона заголовка */
+    padding: 20px 0;
+    color: white; /* Цвет текста заголовка */
+    text-align: center;
 }
 
-/* Элементные селекторы */
-h1, h2 {
-    color: #333;
-}
-
-p {
-    font-size: 16px;
-}
-
-ul {
-    list-style-type: none; /* Визуализация списков */
-}
-
-/* Селекторы классов */
+/* Селектор класса */
 .nav-list {
+    list-style-type: none; /* Убираем маркеры списка */
+    margin: 0;
+    padding: 0;
     display: flex;
-    justify-content: space-around;
-    background-color: #eee;
+    justify-content: center;
 }
 
-/* Селекторы идентификаторов */
-#contact {
-    background-color: white;
-    border: 1px solid #ddd;
-    padding: 20px;
+.nav-list li {
+    padding: 0 15px;
 }
 
-/* Атрибутные селекторы */
-input[type="submit"], input[type="reset"] {
-    background-color: #5fbae9;
+.nav-list a {
+    text-decoration: none; /* Убираем подчёркивание текста */
     color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
 }
 
-/* Псевдо-классы и псевдо-элементы */
-a:hover {
-    text-decoration: underline;
+/* Селектор класса с псевдо-классом */
+.nav-list a:hover {
+    color: #ddd; /* Цвет текста при наведении */
 }
 
-nav ul li::before {
-    content: '• ';
-    color: red;
+/* Селектор идентификатора */
+#contactForm {
+    max-width: 600px;
+    margin: 0 auto; /* Центрирование формы */
+    padding: 20px;
+    background-color: #fff; /* Белый фон для формы */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Тень вокруг формы */
 }
 
-/* Комбинация селекторов */
-nav ul li:first-child a {
-    color: green; /* Пример inline стиля с !important */
+/* Атрибутный селектор */
+input[type="text"],
+input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd; /* Граница поля для ввода */
 }
 
-/* Медиа запросы */
-@media (max-width: 600px) {
+/* Селектор псевдо-элемента */
+footer::before {
+    content: "";
+    display: block;
+    height: 1px;
+    background-color: #eaeaea; /* Цвет линии перед подвалом */
+    margin-bottom: 20px;
+}
+
+footer p {
+    text-align: center;
+}
+
+/* Медиа-запросы для адаптивного дизайна */
+@media (max-width: 768px) {
     .nav-list {
-        flex-direction: column;
+        flex-direction: column; /* Меняем расположение на вертикальное для мобильных */
     }
 
-    header, nav, section, footer {
-        margin: 5px;
-        padding: 10px;
+    .nav-list li {
+        padding: 10px 0;
     }
+}
+
+/* Комбинированные селекторы */
+main h2 {
+    color: #333; /* Цвет заголовков внутри <main> */
+    border-bottom: 2px solid #4CAF50; /* Подчёркивание заголовка */
+}
+
+section+aside { /* "Братский" комбинатор, применяется к <aside>, идущему сразу за <section> */
+    border-left: 4px solid #4CAF50; /* Линия слева от <aside> */
+    padding-left: 20px; /* Отступ внутри <aside> слева */
+}
+
+/* Использование !important */
+main p {
+    color: #555 !important; /* Переопределит любые другие конфликтующие правила для <p> внутри <main> */
 }
