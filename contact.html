@@ -23,17 +23,18 @@
   </script>
 </head>
 <body>
-  <header>
+ <header id="header"> <!-- Применён идентификатор для стилей шапки -->
     <h1>Форма обратной связи</h1>
     <nav>
-      <ul>
+      <ul class="nav-list"> <!-- Применён класс для стилей навигационного списка -->
         <li><a href="index.html">Главная</a></li>
         <li><a href="contact.html">Обратная связь</a></li>
       </ul>
     </nav>
-  </header>
+ </header>
 
-  <main>
+ <main class="main-content" style="background-color: #fff;"> <!-- Добавление класса и инлайн стиля фона -->
+
     <section>
       <h2>Свяжитесь с нами:</h2>
       <form action="submit_form" method="post" enctype="multipart/form-data">
@@ -90,8 +91,9 @@
     </section>
   </main>
 
-  <footer>
+  <footer style="text-align: center; padding: 20px;"> <!-- Добавление инлайн стилей для футера -->
     <p>&copy; 2021 Студенты ВШЭ</p>
   </footer>
 </body>
 </html>
+
