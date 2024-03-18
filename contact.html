@@ -1,99 +1,148 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Обратная связь - ВШЭ студент</title>
-  <link rel="stylesheet" href="style.css">
-  <script>
-    document.addEventListener("DOMContentLoaded", function(){
-      var form = document.querySelector("form");
-      form.addEventListener("submit", function(event){
-        var valid = form.checkValidity();
-        if (valid) {
-          alert("Форма успешно отправлена");
-          // Действие по отправке формы (например, сохранить данные формы)
-          // ...
-          event.preventDefault(); // Удалить эту строку, чтобы форма реально отправлялась
-        } else {
-          // Выделение некорректно заполненных полей будет выполнено браузером
-          event.preventDefault();
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты</title>
+    <link rel="stylesheet" href="contact-styles.css">
+    <style>
+        .success-message {
+            display: none;
+            color: green;
+            margin-top: 10px;
         }
-      });
-    });
-  </script>
+
+        #colorPreview {
+            width: 50px;
+            height: 50px;
+            border: 1px solid #000;
+            margin-top: 10px;
+        }
+    </style>
 </head>
+
 <body>
- <header id="header"> <!-- Применён идентификатор для стилей шапки -->
-    <h1>Форма обратной связи</h1>
+
+    <header>
+        <h1>Я - студент ВШЭ</h1>
+    </header>
+
     <nav>
-      <ul class="nav-list"> <!-- Применён класс для стилей навигационного списка -->
-        <li><a href="index.html">Главная</a></li>
-        <li><a href="contact.html">Обратная связь</a></li>
-      </ul>
+        <ul>
+            <li><a href="index.html#home">Главная и Обо мне</a></li>
+            <li><a href="contact.html#contact">Контакты</a></li>
+        </ul>
     </nav>
- </header>
 
- <main class="main-content" style="background-color: #fff;"> <!-- Добавление класса и инлайн стиля фона -->
+    <main>
+        <section id="contact">
+            <h2>Свяжитесь со мной</h2>
+            <form id="contactForm" action="process_form.php" method="post" onsubmit="return handleFormSubmit()">
+                <label for="name">Имя:</label>
+                <input type="text" id="name" name="name" required>
 
-    <section>
-      <h2>Свяжитесь с нами:</h2>
-      <form action="submit_form" method="post" enctype="multipart/form-data">
-        <div>
-          <label for="name">Имя:</label>
-          <input type="text" id="name" name="name" required>
-        </div>
-        <div>
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required>
-        </div>
-        <div>
-          <label for="phone">Телефон:</label>
-          <input type="tel" id="phone" name="phone">
-        </div>
-        <div>
-          <label for="birthdate">Дата рождения:</label>
-          <input type="date" id="birthdate" name="birthdate">
-        </div>
-        <div>
-          <label for="age">Возраст:</label>
-          <input type="range" id="age" name="age" min="16" max="100" step="1">
-          <span id="ageOutput">50</span> <!-- Примерное значение, можно вставить JavaScript для динамического обновления -->
-        </div>
-        <div>
-          <label for="theme">Тема:</label>
-          <select id="theme" name="theme" multiple>
-            <option value="question">Вопрос</option>
-            <option value="feedback">Обратная связь</option>
-            <option value="other">Другое</option>
-          </select>
-        </div>
-        <div>
-          <label for="priority">Приоритет:</label>
-          <select id="priority" name="priority">
-            <option value="high">Высокий</option>
-            <option value="medium" selected>Средний</option>
-            <option value="low">Низкий</option>
-          </select>
-        </div>
-        <div>
-          <label for="file">Выбор файла:</label>
-          <input type="file" id="file" name="file">
-        </div>
-        <div>
-          <label for="message">Сообщение:</label>
-          <textarea id="message" name="message" rows="5"></textarea>
-        </div>
-        <div>
-          <input type="submit" value="Отправить">
-          <input type="reset" value="Сбросить">
-        </div>
-      </form>
-    </section>
-  </main>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
 
-  <footer style="text-align: center; padding: 20px;"> <!-- Добавление инлайн стилей для футера -->
-    <p>&copy; 2021 Студенты ВШЭ</p>
-  </footer>
+                <label for="phone">Телефон:</label>
+                <input type="tel" id="phone" name="phone" required>
+
+                <label for="message">Сообщение:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+
+                <div class="theme-group">
+                    <label for="subject">Тема обращения:</label>
+                    <select id="subject" name="subject" required>
+                        <option value="question">Вопрос</option>
+                        <option value="feedback">Обратная связь</option>
+                        <option value="other">Другое</option>
+                    </select>
+                </div>
+
+                <div class="priority-group">
+                    <label for="priority">Приоритет:</label>
+                    <input type="radio" id="priority-high" name="priority" value="high" required>
+                    <label for="priority-high">Высокий</label>
+                    <input type="radio" id="priority-medium" name="priority" value="medium">
+                    <label for="priority-medium">Средний</label>
+                    <input type="radio" id="priority-low" name="priority" value="low">
+                    <label for="priority-low">Низкий</label>
+                </div>
+
+                <div class="birthdate-group">
+                    <label for="birthdate">Дата рождения:</label>
+                    <input type="date" id="birthdate" name="birthdate" required onchange="updateAgeOutput()">
+                </div>
+
+                <div class="file-group">
+                    <label for="file">Выберите файл:</label>
+                    <input type="file" id="file" name="file" accept=".pdf, .doc, .docx">
+                </div>
+
+                <div class="age-group">
+                    <label for="age">Возраст:</label>
+                    <input type="range" id="age" name="age" min="18" max="99" value="25" oninput="updateAgeOutput()">
+                    <output id="ageOutput" for="age">Возраст: 25 лет</output>
+                </div>
+
+                <div class="button-group">
+                    <input type="submit" value="Отправить">
+                    <input type="reset" value="Сбросить">
+                </div>
+
+            </form>
+
+            <div id="successMessage" class="success-message">Форма успешно отправлена! Спасибо за ваше сообщение.</div>
+        </section>
+
+        <div class="message-group">
+            <section id="chat">
+                <div id="chat-container">
+                    <div id="chat-messages"></div>
+                    <input type="text" id="message-input" placeholder="Введите сообщение...">
+                    <button id="send-button">Отправить</button>
+                    <button id="record-button">Запись голоса</button>
+                    <button id="stop-record-button" class="disabled">Остановить запись и отправить</button>
+                    <button id="play-button" disabled>Воспроизвести</button>
+                    <div id="recording-indicator"></div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Студент ВШЭ. Все права защищены.</p>
+    </footer>
+
+    <script>
+        function handleFormSubmit() {
+            document.getElementById('successMessage').style.display = 'block';
+
+            setTimeout(function () {
+                document.getElementById('contactForm').reset();
+                document.getElementById('successMessage').style.display = 'none';
+                resetForm();
+            }, 3000);
+
+            return false;
+        }
+
+        function updateAgeOutput() {
+            var ageOutput = document.getElementById('ageOutput');
+            var ageInput = document.getElementById('age');
+            ageOutput.textContent = 'Возраст: ' + ageInput.value + ' лет';
+        }
+
+        function resetForm() {
+            document.getElementById('ageOutput').textContent = 'Возраст: 25 лет';
+            document.getElementById('colorOutput').textContent = 'Цвет: #ff0000';
+            document.getElementById('colorPreview').style.backgroundColor = '';
+        }
+    </script>
+
+    <script src="scrips.js"></script>
+
 </body>
-</html>
 
+</html>
