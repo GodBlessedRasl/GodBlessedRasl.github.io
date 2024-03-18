@@ -1,0 +1,74 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+}
+
+header, nav, section, footer {
+    margin: 10px;
+    padding: 15px;
+}
+
+/* Элементные селекторы */
+h1, h2 {
+    color: #333;
+}
+
+p {
+    font-size: 16px;
+}
+
+ul {
+    list-style-type: none; /* Визуализация списков */
+}
+
+/* Селекторы классов */
+.nav-list {
+    display: flex;
+    justify-content: space-around;
+    background-color: #eee;
+}
+
+/* Селекторы идентификаторов */
+#contact {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 20px;
+}
+
+/* Атрибутные селекторы */
+input[type="submit"], input[type="reset"] {
+    background-color: #5fbae9;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Псевдо-классы и псевдо-элементы */
+a:hover {
+    text-decoration: underline;
+}
+
+nav ul li::before {
+    content: '• ';
+    color: red;
+}
+
+/* Комбинация селекторов */
+nav ul li:first-child a {
+    color: green; /* Пример inline стиля с !important */
+}
+
+/* Медиа запросы */
+@media (max-width: 600px) {
+    .nav-list {
+        flex-direction: column;
+    }
+
+    header, nav, section, footer {
+        margin: 5px;
+        padding: 10px;
+    }
+}
