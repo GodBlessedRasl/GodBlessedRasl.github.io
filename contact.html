@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Контакт</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -14,9 +15,9 @@
     </header>
 
     <nav>
-        <ul>
+        <ul class="nav-list">
             <li><a href="index.html">Главная</a></li>
-            <li><a href="contact.html">Контакт</a></li>
+            <li><a href="contact.html" style="color: blue !important;">Контакт</a></li> <!-- Применение !important в inline-стиле -->
         </ul>
     </nav>
 
@@ -61,10 +62,9 @@
                 <input type="range" id="age" name="age" min="18" max="99" value="25" oninput="updateAgeOutput()">
                 <output id="ageOutput" for="age">Возраст: 25 лет</output><br>
 
-                <input type="submit" value="Отправить">
+                <input type="submit" value="Отправить" style="background-color: #4CAF50;"> <!-- Применение inline-стиля для кнопки -->
                 <input type="reset" value="Сбросить" onclick="resetForm()">
             </form>
-
         </section>
     </main>
 
@@ -76,7 +76,7 @@
         function handleFormSubmit() {
             document.getElementById('successMessage').style.display = 'block';
 
-            setTimeout(function () {
+            setTimeout(function() {
                 document.getElementById('contactForm').reset();
                 document.getElementById('successMessage').style.display = 'none';
                 resetForm();
