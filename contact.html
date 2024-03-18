@@ -1,3 +1,4 @@
+html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -9,9 +10,9 @@
 <body>
 
     <header>
-        <h1>Связаться со мной</h1>
+        <h1 style="font-size: 2em; margin: 0;">Связаться со мной</h1>
         <nav>
-            <ul>
+            <ul class="nav-list">
                 <li><a href="index.html">Главная</a></li>
                 <li><a href="contact.html">Контакт</a></li>
             </ul>
@@ -21,7 +22,7 @@
     <main>
         <section>
             <h2>Форма обратной связи</h2>
-            <form action="submit_form.php" method="POST">
+            <form id="contactForm" action="submit_form.php" method="POST">
                 <label for="name">Ваше имя:</label>
                 <input type="text" id="name" name="name" required><br>
 
@@ -31,11 +32,11 @@
                 <label for="message">Сообщение:</label><br>
                 <textarea id="message" name="message" rows="4" required></textarea><br>
 
-                <button type="submit">Отправить</button>
+                <button type="submit" style="padding: 10px 20px; background-color: #4CAF50; border: none; color: white;">Отправить</button> 
             </form>
         </section>
     </main>
-
+    
     <footer>
         <p>&copy; 2023 Я - студент ВШЭ</p>
     </footer>
