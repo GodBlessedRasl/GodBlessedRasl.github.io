@@ -37,6 +37,11 @@
           <input type="date" id="birthdate" name="birthdate">
         </div>
         <div>
+          <label for="age">Возраст:</label>
+          <input type="range" id="age" name="age" min="16" max="100" step="1">
+          <span id="ageOutput">50</span> <!-- Примерное значение, можно вставить JavaScript для динамического обновления -->
+        </div>
+        <div>
           <label for="theme">Тема:</label>
           <select id="theme" name="theme" multiple>
             <option value="question">Вопрос</option>
