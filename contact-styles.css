@@ -1,104 +1,191 @@
+/* Стили, применяемые только к странице contact.html */
 
-window.onload = function () {
-    var messagesContainer = document.getElementById('chat-messages');
-    var inputField = document.getElementById('message-input');
-    var buttonSend = document.getElementById('send-button');
-    var buttonRecord = document.getElementById('record-button');
-    var buttonStop = document.getElementById('stop-record-button');
-    var buttonPlay = document.getElementById('play-button');
-    var indicatorRecording = document.getElementById('recording-indicator');
-    var recorder;
-    var chunks = [];
+header {
+    background-color: #343a40; /* Темно-серый фон */
+    color: white; /* Белый цвет текста для контраста */
+    padding: 10px 0; /* Отступы сверху и снизу */
+    text-align: center; /* Центрирование текста */
+}
 
-    buttonSend.onclick = function () {
-        processSendingMessage(inputField.value.trim());
-    };
+/* Стилизация навигации */
+nav {
+    background-color: #343a40; /* Темно-серый фон */
+    padding: 0; /* Убираем внутренние отступы */
+}
 
-    inputField.addEventListener('keypress', function (event) {
-        if (event.key === 'Enter') {
-            processSendingMessage(inputField.value.trim());
-        }
-    });
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; /* использование flexbox для построения навигационного меню */
+    justify-content: center; /* Горизонтально центрировать ссылки */
+    align-items: center; /* Вертикально центрировать содержимое */
+    gap: 15px; /* Отступы между вкладками */
+}
 
-    buttonRecord.onclick = function () {
-        navigator.mediaDevices.getUserMedia({ audio: true })
-            .then(function (audioStream) {
-                recorder = new MediaRecorder(audioStream);
-                recorder.start();
-                chunks = [];
+nav li {
+    margin: 0; /* Убираем внешние отступы */
+}
 
-                recorder.ondataavailable = function (event) {
-                    chunks.push(event.data);
-                };
+nav a {
+    text-decoration: none;
+    color: white; /* Белый цвет текста для контраста */
+    padding: 5px 10px; /* Отступы для ссылок */
+}
 
-                recorder.onstop = function () {
-                    var blobAudio = new Blob(chunks, { type: 'audio/wav' });
-                    var urlAudio = URL.createObjectURL(blobAudio);
-                    var playbackAudio = new Audio(urlAudio);
-                    playbackAudio.controls = true;
-                    messagesContainer.appendChild(playbackAudio);
+/* Стили для формы контакта */
+#contact-form {
+    max-width: 800px;
+    margin: 20px auto; /* Авто-марджин для центрирования */
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
 
-                    buttonPlay.disabled = false;
-                    buttonStop.disabled = true;
-                    buttonRecord.disabled = false;
-                    indicatorRecording.textContent = '';
-                };
+.button-group {
+    display: flex;
+    justify-content: center; /* Центрирование по горизонтали */
+    gap: 10px; /* Расстояние между кнопками */
+    margin-top: 20px; /* Отступ сверху */
+}
 
-                buttonStop.disabled = false;
-                buttonRecord.disabled = true;
-                indicatorRecording.textContent = 'Recording...';
-            })
-            .catch(function (error) {
-                console.error('Error during audio recording: ', error);
-            });
-    };
+.theme-group {
+    display: flex;
+    justify-content: center; /* Центрирование по горизонтали */
+    gap: 10px; /* Расстояние между кнопками */
+    margin-top: 20px; /* Отступ сверху */
+}
 
-    buttonStop.onclick = function () {
-        if (recorder.state === 'recording') {
-            recorder.stop();
-        }
-    };
+.priority-group {
+    display: flex;
+    justify-content: center; /* Центрирование по горизонтали */
+    gap: 10px; /* Расстояние между кнопками */
+    margin-top: 20px; /* Отступ сверху */
+}
 
-    buttonPlay.onclick = function () {
-        var audioElements = messagesContainer.getElementsByTagName('audio');
-        if (audioElements.length > 0) {
-            audioElements[audioElements.length - 1].play();
-        }
-    };
+.birthdate-group {
+    display: flex;
+    justify-content: center; /* Центрирование по горизонтали */
+    gap: 10px; /* Расстояние между кнопками */
+    margin-top: 20px; /* Отступ сверху */
+}
 
-    function processSendingMessage(text) {
-        if (text !== '') {
-            displayMessage('You', text);
-            inputField.value = '';
+.file-group {
+    display: flex;
+    justify-content: center; /* Центрирование по горизонтали */
+    gap: 10px; /* Расстояние между кнопками */
+    margin-top: 20px; /* Отступ сверху */
+}
 
-            var autoResponse = autoGenerateResponse(text);
-            if (autoResponse !== '') {
-                setTimeout(function () {
-                    displayMessage('Bot', autoResponse);
-                }, 1000);
-            }
-        }
-    }
+.age-group {
+    display: flex;
+    justify-content: center; /* Центрирование по горизонтали */
+    gap: 10px; /* Расстояние между кнопками */
+    margin-top: 20px; /* Отступ сверху */
+}
 
-    function displayMessage(sender, message) {
-        var messageElement = document.createElement('div');
-        messageElement.textContent = sender + ': ' + message;
-        messagesContainer.appendChild(messageElement);
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    }
+.message-group {
+    display: flex;
+    justify-content: center; /* Центрирование по горизонтали */
+    gap: 10px; /* Расстояние между кнопками */
+    margin-top: 20px; /* Отступ сверху */
+}
 
-    function autoGenerateResponse(input) {
-        var responses = {
-            'hello': 'Hello! How are things going?',
-            'bye': 'See you later!',
-            'where are you from?': 'I am from Russia!'
-        };
 
-        for (var expression in responses) {
-            if (input.toLowerCase().includes(expression)) {
-                return responses[expression];
-            }
-        }
-        return '';
-    }
-};
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="submit"],
+input[type="button"],
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover,
+input[type="button"]:hover,
+button:hover {
+    background-color: #0056b3;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer {
+    text-align: center;
+    padding: 1em 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+#chat-container {
+    background-color: white;
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+/* Стили для элементов формы и чата из contact.html */
+input[type=text], input[type=email], input[type=tel], textarea, select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit], input[type=reset], button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover, input[type=reset]:hover, button:hover {
+    background-color: #0056b3;
+}
+
+.contact, #chat-container {
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-color: white;
+    color: #212529;
+}
+
+header, nav, footer, #chat-container {
+    background-color: #343a40; /* Темно-серый фон */
+    padding: 1em 0;
+    color: white; /* Белый цвет текста для контраста */
+}
+
+/* Любые дополнительные стили, которые может понадобиться применить */
