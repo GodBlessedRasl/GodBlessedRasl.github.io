@@ -1,148 +1,82 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Контакты</title>
-    <link rel="stylesheet" href="contact-styles.css">
-    <style>
-        .success-message {
-            display: none;
-            color: green;
-            margin-top: 10px;
-        }
-
-        #colorPreview {
-            width: 50px;
-            height: 50px;
-            border: 1px solid #000;
-            margin-top: 10px;
-        }
-    </style>
+    <title>Я - Студент ВШЭ</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
+<body class="index-page">
 
-<body>
+<header>
+    <h1>Я - студент ВШЭ</h1>
+    <div class="container">
+        <nav>
+            <ul class="nav-list">
+                <li><a href="index.html#home">Главная и Обо мне</a></li>
+                <li><a href="contact.html#contact">Контакты</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 
-    <header>
-        <h1>Я - студент ВШЭ</h1>
-    </header>
 
-    <nav>
-        <ul>
-            <li><a href="index.html#home">Главная и Обо мне</a></li>
-            <li><a href="contact.html#contact">Контакты</a></li>
-        </ul>
-    </nav>
+<main>
+    <div class="container">
 
-    <main>
-        <section id="contact">
-            <h2>Свяжитесь со мной</h2>
-            <form id="contactForm" action="process_form.php" method="post" onsubmit="return handleFormSubmit()">
-                <label for="name">Имя:</label>
-                <input type="text" id="name" name="name" required>
-
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-
-                <label for="phone">Телефон:</label>
-                <input type="tel" id="phone" name="phone" required>
-
-                <label for="message">Сообщение:</label>
-                <textarea id="message" name="message" rows="4" required></textarea>
-
-                <div class="theme-group">
-                    <label for="subject">Тема обращения:</label>
-                    <select id="subject" name="subject" required>
-                        <option value="question">Вопрос</option>
-                        <option value="feedback">Обратная связь</option>
-                        <option value="other">Другое</option>
-                    </select>
-                </div>
-
-                <div class="priority-group">
-                    <label for="priority">Приоритет:</label>
-                    <input type="radio" id="priority-high" name="priority" value="high" required>
-                    <label for="priority-high">Высокий</label>
-                    <input type="radio" id="priority-medium" name="priority" value="medium">
-                    <label for="priority-medium">Средний</label>
-                    <input type="radio" id="priority-low" name="priority" value="low">
-                    <label for="priority-low">Низкий</label>
-                </div>
-
-                <div class="birthdate-group">
-                    <label for="birthdate">Дата рождения:</label>
-                    <input type="date" id="birthdate" name="birthdate" required onchange="updateAgeOutput()">
-                </div>
-
-                <div class="file-group">
-                    <label for="file">Выберите файл:</label>
-                    <input type="file" id="file" name="file" accept=".pdf, .doc, .docx">
-                </div>
-
-                <div class="age-group">
-                    <label for="age">Возраст:</label>
-                    <input type="range" id="age" name="age" min="18" max="99" value="25" oninput="updateAgeOutput()">
-                    <output id="ageOutput" for="age">Возраст: 25 лет</output>
-                </div>
-
-                <div class="button-group">
-                    <input type="submit" value="Отправить">
-                    <input type="reset" value="Сбросить">
-                </div>
-
-            </form>
-            <div id="successMessage" class="success-message">Форма успешно отправлена! Спасибо за ваше сообщение.</div>
+        <section id="home-about" class="centered-section">
+            <div class="full-width-text">
+                <h2>Главная страница и информация обо мне</h2>
+            </div>
+            <div class="full-width-text">
+                <p>Вы находитесь на основной странице сайта, тут можно найти основную информацию обо мне.</p>
+            </div>
+            <div class="full-width-text">
+                <p>Я являюсь студентом Высшей Школы Экономики, факультета Прикладная Математика.</p>
+            </div>
+            <div class="full-width-text">
+                <p><a class="link" href="Resume.pdf" target="_blank">Тут</a> можно ознакомиться с моей деятельностью за последние несколько лет.</p>
+            </div>
         </section>
 
-        <div class="message-group">
+    </div>
 
-            <section id="chat">
-                <div id="chat-container">
-                    <div id="chat-messages"></div>
-                    <input type="text" id="message-input" placeholder="Введите сообщение...">
-                    <button id="send-button">Отправить</button>
-                    <button id="record-button">Запись голоса</button>
-                    <button id="stop-record-button" class="disabled">Остановить запись и отправить</button>
-                    <button id="play-button" disabled>Воспроизвести</button>
-                    <div id="recording-indicator"></div>
-                </div>
-            </section>
-        </div>
-    </main>
+    <div class="container">
+        <section id="my-photo-section" class="centered-section">
+            <img id="my-photo" src="student.jpg" alt="Моя фотография">
+            <p class="photo-caption">Это я - студент факультета Прикладная Математика ВШЭ</p>
+        </section>
+    </div>
 
-    <footer>
-        <p>&copy; 2024 Студент ВШЭ. Все права защищены.</p>
-    </footer>
+    <div class="container">
+        <section id="my-location" class="centered-section">
+            <h3>Моё местоположение</h3>
+            <div id="map"></div>
+        </section>
+    </div>
+</main>
 
-    <script>
-        function handleFormSubmit() {
-            document.getElementById('successMessage').style.display = 'block';
+<footer>
+    <p>&copy; 2024 Студент ВШЭ. Все права защищены.</p>
+</footer>
 
-            setTimeout(function () {
-                document.getElementById('contactForm').reset();
-                document.getElementById('successMessage').style.display = 'none';
-                resetForm();
-            }, 3000);
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="scripts.js"></script>
+<script>
+    // Создание карты
+    var map = L.map('map').setView([55.7558, 37.6173], 10);
 
-            return false;
-        }
+    // Добавление слоя OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
 
-        function updateAgeOutput() {
-            var ageOutput = document.getElementById('ageOutput');
-            var ageInput = document.getElementById('age');
-            ageOutput.textContent = 'Возраст: ' + ageInput.value + ' лет';
-        }
-
-        function resetForm() {
-            document.getElementById('ageOutput').textContent = 'Возраст: 25 лет';
-            document.getElementById('colorOutput').textContent = 'Цвет: #ff0000';
-            document.getElementById('colorPreview').style.backgroundColor = '';
-        }
-    </script>
-
-    <script src="scripts.js"></script>
+    // Добавление маркера
+    L.marker([55.7558, 37.6173]).addTo(map)
+        .bindPopup('Москва, Россия')
+        .openPopup();
+</script>
 
 </body>
-
 </html>
