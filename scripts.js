@@ -1,104 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
 
-window.onload = function () {
-    var messagesContainer = document.getElementById('chat-messages');
-    var inputField = document.getElementById('message-input');
-    var buttonSend = document.getElementById('send-button');
-    var buttonRecord = document.getElementById('record-button');
-    var buttonStop = document.getElementById('stop-record-button');
-    var buttonPlay = document.getElementById('play-button');
-    var indicatorRecording = document.getElementById('recording-indicator');
-    var recorder;
-    var chunks = [];
-
-    buttonSend.onclick = function () {
-        processSendingMessage(inputField.value.trim());
-    };
-
-    inputField.addEventListener('keypress', function (event) {
-        if (event.key === 'Enter') {
-            processSendingMessage(inputField.value.trim());
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты</title>
+    <link rel="stylesheet" href="contact-styles.css">
+    <style>
+        .success-message {
+            display: none;
+            color: green;
+            margin-top: 10px;
         }
-    });
 
-    buttonRecord.onclick = function () {
-        navigator.mediaDevices.getUserMedia({ audio: true })
-            .then(function (audioStream) {
-                recorder = new MediaRecorder(audioStream);
-                recorder.start();
-                chunks = [];
-
-                recorder.ondataavailable = function (event) {
-                    chunks.push(event.data);
-                };
-
-                recorder.onstop = function () {
-                    var blobAudio = new Blob(chunks, { type: 'audio/wav' });
-                    var urlAudio = URL.createObjectURL(blobAudio);
-                    var playbackAudio = new Audio(urlAudio);
-                    playbackAudio.controls = true;
-                    messagesContainer.appendChild(playbackAudio);
-
-                    buttonPlay.disabled = false;
-                    buttonStop.disabled = true;
-                    buttonRecord.disabled = false;
-                    indicatorRecording.textContent = '';
-                };
-
-                buttonStop.disabled = false;
-                buttonRecord.disabled = true;
-                indicatorRecording.textContent = 'Recording...';
-            })
-            .catch(function (error) {
-                console.error('Error during audio recording: ', error);
-            });
-    };
-
-    buttonStop.onclick = function () {
-        if (recorder.state === 'recording') {
-            recorder.stop();
+        #colorPreview {
+            width: 50px;
+            height: 50px;
+            border: 1px solid #000;
+            margin-top: 10px;
         }
-    };
+    </style>
+</head>
 
-    buttonPlay.onclick = function () {
-        var audioElements = messagesContainer.getElementsByTagName('audio');
-        if (audioElements.length > 0) {
-            audioElements[audioElements.length - 1].play();
+<body>
+
+    <header>
+        <h1>Я - студент ВШЭ</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html#home">Главная и Обо мне</a></li>
+            <li><a href="contact.html#contact">Контакты</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="contact">
+            <h2>Свяжитесь со мной</h2>
+            <form id="contactForm" action="process_form.php" method="post" onsubmit="return handleFormSubmit()">
+                <label for="name">Имя:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="phone">Телефон:</label>
+                <input type="tel" id="phone" name="phone" required>
+
+                <label for="message">Сообщение:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+
+                <div class="theme-group">
+                    <label for="subject">Тема обращения:</label>
+                    <select id="subject" name="subject" required>
+                        <option value="question">Вопрос</option>
+                        <option value="feedback">Обратная связь</option>
+                        <option value="other">Другое</option>
+                    </select>
+                </div>
+
+                <div class="priority-group">
+                    <label for="priority">Приоритет:</label>
+                    <input type="radio" id="priority-high" name="priority" value="high" required>
+                    <label for="priority-high">Высокий</label>
+                    <input type="radio" id="priority-medium" name="priority" value="medium">
+                    <label for="priority-medium">Средний</label>
+                    <input type="radio" id="priority-low" name="priority" value="low">
+                    <label for="priority-low">Низкий</label>
+                </div>
+
+                <div class="birthdate-group">
+                    <label for="birthdate">Дата рождения:</label>
+                    <input type="date" id="birthdate" name="birthdate" required onchange="updateAgeOutput()">
+                </div>
+
+                <div class="file-group">
+                    <label for="file">Выберите файл:</label>
+                    <input type="file" id="file" name="file" accept=".pdf, .doc, .docx">
+                </div>
+
+                <div class="age-group">
+                    <label for="age">Возраст:</label>
+                    <input type="range" id="age" name="age" min="18" max="99" value="25" oninput="updateAgeOutput()">
+                    <output id="ageOutput" for="age">Возраст: 25 лет</output>
+                </div>
+
+                <div class="button-group">
+                    <input type="submit" value="Отправить">
+                    <input type="reset" value="Сбросить">
+                </div>
+
+            </form>
+            <div id="successMessage" class="success-message">Форма успешно отправлена! Спасибо за ваше сообщение.</div>
+        </section>
+
+        <div class="message-group">
+
+            <section id="chat">
+                <div id="chat-container">
+                    <div id="chat-messages"></div>
+                    <input type="text" id="message-input" placeholder="Введите сообщение...">
+                    <button id="send-button">Отправить</button>
+                    <button id="record-button">Запись голоса</button>
+                    <button id="stop-record-button" class="disabled">Остановить запись и отправить</button>
+                    <button id="play-button" disabled>Воспроизвести</button>
+                    <div id="recording-indicator"></div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Студент ВШЭ. Все права защищены.</p>
+    </footer>
+
+    <script>
+        function handleFormSubmit() {
+            document.getElementById('successMessage').style.display = 'block';
+
+            setTimeout(function () {
+                document.getElementById('contactForm').reset();
+                document.getElementById('successMessage').style.display = 'none';
+                resetForm();
+            }, 3000);
+
+            return false;
         }
-    };
 
-    function processSendingMessage(text) {
-        if (text !== '') {
-            displayMessage('You', text);
-            inputField.value = '';
-
-            var autoResponse = autoGenerateResponse(text);
-            if (autoResponse !== '') {
-                setTimeout(function () {
-                    displayMessage('Bot', autoResponse);
-                }, 1000);
-            }
+        function updateAgeOutput() {
+            var ageOutput = document.getElementById('ageOutput');
+            var ageInput = document.getElementById('age');
+            ageOutput.textContent = 'Возраст: ' + ageInput.value + ' лет';
         }
-    }
 
-    function displayMessage(sender, message) {
-        var messageElement = document.createElement('div');
-        messageElement.textContent = sender + ': ' + message;
-        messagesContainer.appendChild(messageElement);
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    }
-
-    function autoGenerateResponse(input) {
-        var responses = {
-            'hello': 'Hello! How are things going?',
-            'bye': 'See you later!',
-            'where are you from?': 'I am from Russia!'
-        };
-
-        for (var expression in responses) {
-            if (input.toLowerCase().includes(expression)) {
-                return responses[expression];
-            }
+        function resetForm() {
+            document.getElementById('ageOutput').textContent = 'Возраст: 25 лет';
+            document.getElementById('colorOutput').textContent = 'Цвет: #ff0000';
+            document.getElementById('colorPreview').style.backgroundColor = '';
         }
-        return '';
-    }
-};
+    </script>
+
+    <script src="scripts.js"></script>
+
+</body>
+
+</html>
